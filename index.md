@@ -62,7 +62,6 @@ features:
 
 ## At a glance
 
-**What’s new in openFetch:** validated JSON with **[Standard Schema](https://github.com/standard-schema/standard-schema)** (`jsonSchema` on the config and **`.json(schema)`** on the fluent client), **Ky-style `throwHttpErrors`** (alongside `validateStatus`), native **`Request`** as `request()` input, synchronous **`init[]`** hooks on the merged config, **`ERR_TIMEOUT`** separate from user **`AbortSignal`** cancel, **retry `onAfterResponse` / `onBeforeRetry`** with **`OpenFetchForceRetry`**, suggested **`Accept`** from `responseType`, and **type guards** (`isHTTPError`, `isTimeoutError`, `isSchemaValidationError`). **[Full feature list & request pipeline →](./features-pipeline.md)**
 
 <ComparisonMatrix />
 

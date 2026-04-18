@@ -7,7 +7,7 @@
 /** Published package name on npm (scoped). */
 export const OPENFETCH_NPM_PACKAGE = "@hamdymohamedak/openfetch";
 
-export const OPENFETCH_VERSION = "0.2.9";
+export const OPENFETCH_VERSION = "1.0.0";
 
-/** Display tag, e.g. `v0.2.9` */
+/** Display tag, e.g. `v1.0.0` */
 export const OPENFETCH_VERSION_TAG = `v${OPENFETCH_VERSION}`;
