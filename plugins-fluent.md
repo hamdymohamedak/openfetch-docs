@@ -14,7 +14,7 @@ See [Getting started — Subpath imports](./getting-started.md#subpath-imports-t
 | **`retry(options?)`** | Wraps `createRetryMiddleware` with an `attempts` alias for `maxAttempts`. |
 | **`timeout(ms)`** | Per-request timeout middleware (sets `timeout` on `ctx.request`). |
 | **`hooks({ … })`** | Single middleware: **`onRequest`** / **`onResponse`** / **`onError`** around `next()`, plus **`onBeforeRetry`** and **`onAfterResponse`** merged into **`ctx.request.retry`** (same semantics as `OpenFetchRetryOptions`). |
-| **`debug(options?)`** | Structured logging phases (masking headers, redacting URLs). |
+| **`debug(options?)`** | Middleware: structured **request / response / error** phases (masking headers, redacting URLs). Distinct from **`createClient({ debug, logger })`** — see [Debugging](./debugging.md). |
 | **`strictFetch()`** | Sets `redirect: "error"` when unset so redirects are not followed silently. |
 
 ### `hooks` and retry
