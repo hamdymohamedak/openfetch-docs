@@ -35,6 +35,7 @@ type NavLabels = {
   httpMethods: string;
   frameworks: string;
   configuration: string;
+  debugging: string;
   pluginsFluent: string;
   interceptors: string;
   architecture: string;
@@ -50,6 +51,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "طرق HTTP",
     frameworks: "React و Vue",
     configuration: "الإعدادات",
+    debugging: "التصحيح والمراقبة",
     pluginsFluent: "الإضافات والواجهة السلسة",
     interceptors: "المعترضات والوسيط",
     architecture: "البنية والداخلية",
@@ -63,6 +65,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "Métodos HTTP",
     frameworks: "React y Vue",
     configuration: "Configuración",
+    debugging: "Depuración",
     pluginsFluent: "Plugins y API fluida",
     interceptors: "Interceptores y middleware",
     architecture: "Arquitectura",
@@ -76,6 +79,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "متدهای HTTP",
     frameworks: "React و Vue",
     configuration: "پیکربندی",
+    debugging: "اشکال‌زدایی",
     pluginsFluent: "افزونه‌ها و API روان",
     interceptors: "قطع‌کننده‌ها و میان‌افزار",
     architecture: "معماری",
@@ -89,6 +93,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "Méthodes HTTP",
     frameworks: "React et Vue",
     configuration: "Configuration",
+    debugging: "Débogage",
     pluginsFluent: "Plugins et API fluent",
     interceptors: "Intercepteurs et middleware",
     architecture: "Architecture",
@@ -102,6 +107,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "HTTP विधियाँ",
     frameworks: "React और Vue",
     configuration: "कॉन्फ़िगरेशन",
+    debugging: "डीबगिंग",
     pluginsFluent: "प्लगइन और फ्लुएंट API",
     interceptors: "इंटरसेप्टर और मिडलवेयर",
     architecture: "Architecture",
@@ -115,6 +121,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "Metodi HTTP",
     frameworks: "React e Vue",
     configuration: "Configurazione",
+    debugging: "Debug",
     pluginsFluent: "Plugin e API fluent",
     interceptors: "Intercettori e middleware",
     architecture: "Architettura",
@@ -128,6 +135,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "HTTP メソッド",
     frameworks: "React と Vue",
     configuration: "設定",
+    debugging: "デバッグ",
     pluginsFluent: "プラグインと Fluent API",
     interceptors: "インターセプターとミドルウェア",
     architecture: "アーキテクチャ",
@@ -141,6 +149,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "HTTP 메서드",
     frameworks: "React와 Vue",
     configuration: "설정",
+    debugging: "디버깅",
     pluginsFluent: "플러그인과 Fluent API",
     interceptors: "인터셉터와 미들웨어",
     architecture: "아키텍처",
@@ -154,6 +163,7 @@ const LABELS: Record<Lang, NavLabels> = {
     httpMethods: "Rêbazên HTTP",
     frameworks: "React û Vue",
     configuration: "Veavakirin",
+    debugging: "Debugging",
     pluginsFluent: "Plugin û Fluent API",
     interceptors: "Interceptors û middleware",
     architecture: "Mîmarî",
@@ -169,6 +179,7 @@ const ROOT_LABELS: NavLabels = {
   httpMethods: "HTTP methods",
   frameworks: "React & Vue",
   configuration: "Configuration",
+  debugging: "Debugging",
   pluginsFluent: "Plugins & fluent API",
   interceptors: "Interceptors & middleware",
   architecture: "Architecture & internals",
@@ -201,6 +212,7 @@ function sidebarRoot() {
         { text: L.httpMethods, link: "/http-methods" },
         { text: L.frameworks, link: "/framework-guides" },
         { text: L.configuration, link: "/configuration" },
+        { text: L.debugging, link: "/debugging" },
         { text: L.pluginsFluent, link: "/plugins-fluent" },
         { text: L.interceptors, link: "/interceptors-middleware" },
         { text: L.architecture, link: "/architecture" },
@@ -233,6 +245,7 @@ function sidebarFor(lang: Lang) {
   }
   items.push(
     { text: L.configuration, link: `${p}/configuration` },
+    { text: L.debugging, link: "/debugging" },
     { text: L.pluginsFluent, link: pluginsFluentLink },
     { text: L.interceptors, link: `${p}/interceptors-middleware` },
     { text: L.architecture, link: architectureLink },
