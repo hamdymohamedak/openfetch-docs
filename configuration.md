@@ -57,6 +57,11 @@ Configuration is merged from **client defaults** and **per-call** options via `m
 
 - **`unwrapResponse`** — When `true`, `get`/`post`/… return **`data` only** instead of full `OpenFetchResponse`. Useful for RSC and minimal call sites.
 
+### Debugging (observability)
+
+- **`debug`** — `true`, `"verbose"`, `"basic"`, or omit / `false` for off. When enabled, emits structured **`OpenFetchDebugEvent`** records for the HTTP lifecycle (merge, fetch per attempt, parse, schema, retries, final response, errors). **`"basic"`** limits events to **`request`**, **`response`**, and **`error`**.
+- **`logger`** — `(event) => void` sink when **`debug`** is enabled; omit to log via **`console.debug`**. See **[Debugging & observability](./debugging.md)** for stages, privacy defaults, and how this differs from the **`debug()`** plugin.
+
 ### `RequestInit` passthrough
 
 These `RequestInit` fields are typed on `OpenFetchConfig` and passed to `fetch`:
@@ -117,9 +122,11 @@ Plugins and fluent client live under **`@hamdymohamedak/openfetch/plugins`** and
 | Raw `fetch` `Response` | `rawResponse: true` or fluent `.raw()` |
 | Retries | `createRetryMiddleware` or `retry()` plugin |
 | GET caching | `createCacheMiddleware` + `MemoryCacheStore` |
+| Structured lifecycle logs | `debug` + optional `logger` on defaults (see [Debugging](./debugging.md)) |
 
 ## Next
 
+- [Debugging & observability](./debugging.md) — client debug pipeline, `debug()` plugin, safe logging  
 - [Features & request pipeline](./features-pipeline.md) — full feature list and diagrams  
 - [Plugins & fluent API](./plugins-fluent.md)  
 - [Interceptors & middleware](./interceptors-middleware.md)
