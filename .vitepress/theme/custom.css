@@ -549,6 +549,105 @@ html.of-docs-root-home .of-at-a-glance h2::after {
   padding-bottom: max(24px, env(safe-area-inset-bottom));
 }
 
+.of-flow {
+  margin: 1.2rem 0 2rem;
+  border: 1px solid color-mix(in srgb, var(--vp-c-divider) 86%, transparent);
+  border-radius: 16px;
+  padding: 1rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--vp-c-bg-soft) 70%, transparent),
+    var(--vp-c-bg)
+  );
+}
+
+.of-flow__header h3 {
+  margin: 0.15rem 0 0.3rem;
+}
+
+.of-flow__eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+}
+
+.of-flow__header p {
+  margin: 0;
+  color: var(--vp-c-text-2);
+}
+
+.of-flow__timeline {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.of-flow__step {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 0.6rem;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: of-step-in 0.5s ease forwards;
+  animation-delay: var(--of-delay, 0ms);
+}
+
+.of-flow__badge {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 28%, transparent);
+  background: color-mix(in srgb, var(--vp-c-brand-soft) 65%, transparent);
+}
+
+.of-flow__card {
+  border: 1px solid color-mix(in srgb, var(--vp-c-divider) 86%, transparent);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  background: var(--vp-c-bg);
+}
+
+.of-flow__card h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.of-flow__card p {
+  margin: 0.35rem 0 0.45rem;
+  color: var(--vp-c-text-2);
+  font-size: 0.92rem;
+}
+
+.of-flow__card code {
+  font-size: 0.77rem;
+}
+
+@keyframes of-step-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .of-flow__step {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ── Locale home pages: English + /ar, /es, … (html.of-docs-root-home from Layout.vue) ── */
 html.of-docs-root-home .VPHome .VPHero {
   position: relative;

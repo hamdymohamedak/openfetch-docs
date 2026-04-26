@@ -10,10 +10,10 @@ For stack comparisons and deep dives, see [Architecture & internals](./architect
 |--------|--------|
 | **npm** | [`@hamdymohamedak/openfetch`](https://www.npmjs.com/package/@hamdymohamedak/openfetch) |
 | **Module format** | **ESM only** (`"type": "module"`) |
-| **Runtime deps** | **Zero** |
+| **Runtime deps** | **Zero** in the published package (optional **user-installed** [`undici`](https://www.npmjs.com/package/undici) on Node only if you use `dispatcher` / `allowH2`) |
 | **Engines** | Node **18+**; also browsers, Bun, Deno, Cloudflare Workers, and other fetch-capable edges |
 | **Entrypoints** | Main package; **`/plugins`** (retry, timeout, hooks, debug, strictFetch); **`/sugar`** (`createFluentClient`) |
-| **Transport** | Native **`fetch`** only (no XHR adapter) |
+| **Transport** | Native **`fetch`** only (no XHR adapter). Node HTTP/2 via Undici is **opt-in** and **user-controlled** — see [Configuration](./configuration.md#node-undici-dispatcher) |
 
 ---
 
@@ -40,7 +40,7 @@ For stack comparisons and deep dives, see [Architecture & internals](./architect
 - **`transformRequest`** — ordered `(data, headers) => …` before body serialization.
 - **Body** — JSON default for plain objects; respects `FormData`, `Blob`, etc.
 - **`timeout`** — internal `AbortController` merged with **`signal`**; on timeout alone → **`OpenFetchError`** code **`ERR_TIMEOUT`** (user abort on `config.signal` → **`ERR_CANCELED`**).
-- **`fetch`** — single call with merged `RequestInit` fields.
+- **`fetch`** — single call with merged `RequestInit` fields (including optional **`dispatcher`** / resolved **`allowH2`** agent when you supply them; see [Configuration](./configuration.md#node-undici-dispatcher)).
 - **`rawResponse`** — skip parse + **`transformResponse`**; `data` is native **`Response`** (interceptors still run).
 
 ### After `fetch` (normal path, not `rawResponse`)

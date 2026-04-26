@@ -44,6 +44,28 @@ const rows: Row[] = [
     },
   },
   {
+    key: "nodeUndici",
+    labelEn: "Node H2 / fetch dispatcher",
+    labelAr: "HTTP/2 على Node أو dispatcher",
+    cells: {
+      openfetch: {
+        kind: "partial",
+        en: "Opt-in: user `undici`; `dispatcher` / `allowH2`",
+        ar: "اختياري: undici من المستخدم؛ `dispatcher` / `allowH2`",
+      },
+      axios: {
+        kind: "text",
+        en: "Node adapters",
+        ar: "محولات Node",
+      },
+      ky: {
+        kind: "partial",
+        en: "Opt-in: user `undici` (docs)",
+        ar: "اختياري: undici (التوثيق)",
+      },
+    },
+  },
+  {
     key: "instance",
     labelEn: "Instance & defaults",
     labelAr: "مثيل وإعدادات افتراضية",
@@ -417,6 +439,7 @@ onUnmounted(() => {
               :key="row.key + c.id"
               class="cmp-matrix__cell"
             >
+              <span class="cmp-matrix__mobile-col">{{ c.title }}</span>
               <span
                 v-if="row.cells[c.id].kind === 'yes'"
                 class="cmp-pill cmp-pill--yes"
@@ -508,6 +531,11 @@ onUnmounted(() => {
 
 .cmp-matrix {
   --cmp-max: min(56rem, calc(100vw - 2 * var(--of-content-pad-inline, 20px)));
+  --cmp-surface: color-mix(in srgb, var(--vp-c-bg) 92%, var(--vp-c-bg-soft));
+  --cmp-surface-2: color-mix(in srgb, var(--vp-c-bg-soft) 70%, transparent);
+  --cmp-line: color-mix(in srgb, var(--vp-c-divider) 78%, transparent);
+  --cmp-row-hover: color-mix(in srgb, var(--vp-c-brand-1) 5%, transparent);
+  --cmp-brand-soft: color-mix(in srgb, var(--vp-c-brand-1) 14%, transparent);
   box-sizing: border-box;
   width: min(100%, var(--cmp-max));
   max-width: var(--cmp-max);
@@ -524,8 +552,8 @@ onUnmounted(() => {
   -webkit-overflow-scrolling: touch;
   width: 100%;
   margin-inline: auto;
-  border-radius: 22px;
-  border: 1px solid color-mix(in srgb, var(--vp-c-divider) 78%, transparent);
+  border-radius: 24px;
+  border: 1px solid var(--cmp-line);
   background:
     radial-gradient(
       130% 90% at 50% -20%,
@@ -537,18 +565,13 @@ onUnmounted(() => {
       color-mix(in srgb, var(--vp-c-brand-3) 8%, transparent),
       transparent 45%
     ),
-    linear-gradient(
-      168deg,
-      color-mix(in srgb, var(--vp-c-bg-soft) 92%, transparent) 0%,
-      var(--vp-c-bg) 38%,
-      color-mix(in srgb, var(--vp-c-bg) 88%, var(--vp-c-bg-soft)) 100%
-    );
+    linear-gradient(168deg, var(--cmp-surface-2) 0%, var(--cmp-surface) 38%, var(--cmp-surface-2) 100%);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow:
-    0 1px 0 color-mix(in srgb, var(--vp-c-bg) 35%, #fff) inset,
-    0 0 0 1px color-mix(in srgb, var(--vp-c-brand-1) 6%, transparent),
-    0 28px 64px -32px rgba(15, 23, 42, 0.28);
+    0 1px 0 color-mix(in srgb, #fff 22%, transparent) inset,
+    0 0 0 1px color-mix(in srgb, var(--vp-c-brand-1) 8%, transparent),
+    0 32px 74px -34px rgba(15, 23, 42, 0.32);
   transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -692,36 +715,51 @@ onUnmounted(() => {
 .cmp-matrix__corner {
   width: 30%;
   min-width: 0;
-  padding: 1rem 1.1rem;
+  padding: 1.05rem 1.18rem;
   text-align: start;
   font-size: 0.68rem;
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--vp-c-text-3);
-  border-bottom: 1px solid color-mix(in srgb, var(--vp-c-divider) 85%, transparent);
+  border-bottom: 1px solid var(--cmp-line);
   vertical-align: bottom;
-  background: color-mix(in srgb, var(--vp-c-bg) 82%, var(--vp-c-bg-soft));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--vp-c-bg-soft) 65%, var(--vp-c-bg)) 0%,
+    color-mix(in srgb, var(--vp-c-bg) 88%, transparent) 100%
+  );
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .cmp-matrix__col-head {
   width: calc(70% / 3);
-  padding: 1rem 0.65rem 0.85rem;
+  padding: 1.05rem 0.76rem 0.92rem;
   text-align: center;
   font-weight: 750;
-  border-bottom: 1px solid color-mix(in srgb, var(--vp-c-divider) 85%, transparent);
-  border-inline-start: 1px solid color-mix(in srgb, var(--vp-c-divider) 70%, transparent);
-  background: color-mix(in srgb, var(--vp-c-bg) 88%, transparent);
+  border-bottom: 1px solid var(--cmp-line);
+  border-inline-start: 1px solid color-mix(in srgb, var(--vp-c-divider) 72%, transparent);
+  background: color-mix(in srgb, var(--vp-c-bg) 86%, transparent);
   vertical-align: bottom;
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .cmp-matrix__col-head--brand {
   background: linear-gradient(
     195deg,
-    color-mix(in srgb, var(--vp-c-brand-1) 22%, transparent) 0%,
-    color-mix(in srgb, var(--vp-c-bg) 90%, var(--vp-c-bg-soft)) 72%,
+    color-mix(in srgb, var(--vp-c-brand-1) 24%, transparent) 0%,
+    color-mix(in srgb, var(--vp-c-bg) 90%, var(--vp-c-bg-soft)) 62%,
     color-mix(in srgb, var(--vp-c-bg) 95%, transparent) 100%
   );
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--vp-c-brand-1) 24%, transparent);
 }
 
 .cmp-matrix__col-title {
@@ -749,32 +787,40 @@ onUnmounted(() => {
 }
 
 .cmp-matrix__row-label {
-  padding: 0.72rem 1.1rem;
+  padding: 0.84rem 1.12rem;
   text-align: start;
-  font-weight: 600;
+  font-weight: 630;
   font-size: 0.8125rem;
   line-height: 1.4;
   color: var(--vp-c-text-1);
-  border-bottom: 1px solid color-mix(in srgb, var(--vp-c-divider) 80%, transparent);
-  background: color-mix(in srgb, var(--vp-c-bg-soft) 48%, var(--vp-c-bg));
+  border-bottom: 1px solid var(--cmp-line);
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 54%, var(--vp-c-bg));
   transition: background-color 0.22s ease, color 0.22s ease;
 }
 
 .cmp-matrix__table tbody tr:hover .cmp-matrix__row-label {
-  background: color-mix(in srgb, var(--vp-c-brand-1) 6%, var(--vp-c-bg-soft));
+  background: color-mix(in srgb, var(--vp-c-brand-1) 8%, var(--vp-c-bg-soft));
 }
 
 .cmp-matrix__cell {
-  padding: 0.6rem 0.55rem;
+  padding: 0.65rem 0.62rem;
   text-align: center;
   vertical-align: middle;
-  border-bottom: 1px solid color-mix(in srgb, var(--vp-c-divider) 80%, transparent);
+  border-bottom: 1px solid var(--cmp-line);
   border-inline-start: 1px solid color-mix(in srgb, var(--vp-c-divider) 70%, transparent);
   transition: background-color 0.22s ease;
 }
 
 .cmp-matrix__table tbody tr:hover .cmp-matrix__cell {
-  background: color-mix(in srgb, var(--vp-c-brand-1) 3%, transparent);
+  background: var(--cmp-row-hover);
+}
+
+.cmp-matrix__table tbody tr:nth-child(even) .cmp-matrix__row-label {
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 60%, var(--vp-c-bg));
+}
+
+.cmp-matrix__table tbody tr:nth-child(even) .cmp-matrix__cell {
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 20%, transparent);
 }
 
 .cmp-matrix__table tbody tr:last-child .cmp-matrix__row-label,
@@ -795,7 +841,8 @@ onUnmounted(() => {
   line-height: 1.2;
   transition:
     transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .cmp-pill:hover {
@@ -819,9 +866,9 @@ onUnmounted(() => {
 }
 
 .cmp-pill--yes {
-  background: color-mix(in srgb, #22c55e 14%, transparent);
-  color: #15803d;
-  border: 1px solid color-mix(in srgb, #22c55e 22%, transparent);
+  background: color-mix(in srgb, #22c55e 15%, transparent);
+  color: #157f3b;
+  border: 1px solid color-mix(in srgb, #22c55e 24%, transparent);
   box-shadow: 0 1px 0 color-mix(in srgb, #fff 18%, transparent) inset;
 }
 
@@ -837,9 +884,9 @@ onUnmounted(() => {
 }
 
 .cmp-pill--partial {
-  background: color-mix(in srgb, #f59e0b 16%, transparent);
-  color: #b45309;
-  border: 1px solid color-mix(in srgb, #f59e0b 26%, transparent);
+  background: color-mix(in srgb, #f59e0b 17%, transparent);
+  color: #ab5106;
+  border: 1px solid color-mix(in srgb, #f59e0b 28%, transparent);
   box-shadow: 0 1px 0 color-mix(in srgb, #fff 12%, transparent) inset;
 }
 
@@ -870,9 +917,9 @@ onUnmounted(() => {
 }
 
 .cmp-matrix__foot {
-  margin: 1.05rem 0 0;
+  margin: 1.1rem 0 0;
   padding-inline: clamp(0.25rem, 2vw, 1rem);
-  font-size: 0.8125rem;
+  font-size: 0.8rem;
   line-height: 1.6;
   color: var(--vp-c-text-3);
   text-align: center;
@@ -886,6 +933,10 @@ onUnmounted(() => {
 
 .cmp-matrix--in-view .cmp-matrix__foot {
   animation: cmp-foot-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.22s forwards;
+}
+
+.cmp-matrix__mobile-col {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -922,7 +973,7 @@ onUnmounted(() => {
   }
 
   .cmp-matrix__table {
-    min-width: 480px;
+    min-width: 440px;
     font-size: 0.8125rem;
   }
 
@@ -939,6 +990,164 @@ onUnmounted(() => {
   .cmp-pill {
     font-size: 0.72rem;
     padding: 0.24rem 0.48rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .cmp-matrix {
+    --cmp-max: min(100%, calc(100vw - 12px));
+    margin-block: 1rem 1.75rem;
+  }
+
+  .cmp-matrix__scroll {
+    border-radius: 12px;
+    overflow-x: visible;
+  }
+
+  .cmp-matrix__table {
+    min-width: 0;
+    font-size: 0.75rem;
+    table-layout: auto;
+  }
+
+  .cmp-matrix__table thead {
+    display: none;
+  }
+
+  .cmp-matrix__table tbody {
+    display: block;
+    padding: 0.5rem;
+  }
+
+  .cmp-matrix__table tbody tr {
+    display: block;
+    opacity: 1;
+    animation: none !important;
+    border: 1px solid color-mix(in srgb, var(--vp-c-divider) 78%, transparent);
+    border-radius: 10px;
+    margin-bottom: 0.48rem;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--vp-c-bg) 90%, var(--vp-c-bg-soft));
+  }
+
+  .cmp-matrix__row-label {
+    display: block;
+    width: 100%;
+    padding: 0.52rem 0.58rem;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    border-bottom: 1px solid color-mix(in srgb, var(--vp-c-divider) 78%, transparent);
+  }
+
+  .cmp-matrix__cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.38rem;
+    width: 100%;
+    padding: 0.4rem 0.58rem;
+    border-inline-start: 0;
+    border-bottom: 1px dashed color-mix(in srgb, var(--vp-c-divider) 72%, transparent);
+    text-align: start;
+  }
+
+  .cmp-matrix__table tbody tr .cmp-matrix__cell:last-child {
+    border-bottom: 0;
+  }
+
+  .cmp-matrix__mobile-col {
+    display: inline-block;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--vp-c-text-3);
+    flex-shrink: 0;
+  }
+
+  .cmp-pill {
+    gap: 0.24rem;
+    padding: 0.18rem 0.38rem;
+    font-size: 0.66rem;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .cmp-pill__dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .cmp-text {
+    font-size: 0.66rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+    text-align: start;
+  }
+
+  .cmp-matrix__foot {
+    margin-top: 0.8rem;
+    padding-inline: 0.2rem;
+    font-size: 0.74rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (min-width: 960px) {
+  .cmp-matrix {
+    --cmp-max: min(74rem, calc(100vw - 2 * var(--of-content-pad-inline, 24px)));
+    margin-block: 2rem 2.8rem;
+  }
+
+  .cmp-matrix__scroll {
+    border-radius: 26px;
+  }
+
+  .cmp-matrix__table {
+    min-width: 880px;
+    font-size: 0.9rem;
+  }
+
+  .cmp-matrix__corner {
+    width: 31%;
+    padding: 1.18rem 1.3rem;
+  }
+
+  .cmp-matrix__col-head {
+    width: calc(69% / 3);
+    padding: 1.16rem 0.9rem 1rem;
+  }
+
+  .cmp-matrix__col-title {
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cmp-matrix__row-label {
+    padding: 0.92rem 1.3rem;
+    font-size: 0.845rem;
+  }
+
+  .cmp-matrix__cell {
+    padding: 0.72rem 0.68rem;
+  }
+
+  .cmp-pill {
+    font-size: 0.8rem;
+    padding: 0.32rem 0.62rem;
+  }
+
+  .cmp-text {
+    font-size: 0.78rem;
+  }
+
+  .cmp-matrix__foot {
+    margin-top: 1.2rem;
+    max-width: min(72rem, calc(100vw - 2 * var(--of-content-pad-inline, 24px)));
   }
 }
 </style>

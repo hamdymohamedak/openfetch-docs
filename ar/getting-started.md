@@ -20,6 +20,10 @@ import { createFluentClient } from "@hamdymohamedak/openfetch/sugar";
 
 راجع [الإضافات والواجهة السلسة](./plugins-fluent.md). **Node 18+** أو أي بيئة فيها `fetch` و`AbortController`.
 
+### اختياري: HTTP/2 على Node ووكلاء مخصصون (`undici`)
+
+المكتبة **لا** تشحن `undici` ولا تعلنها كـ dependency أو peer على npm. إذا احتجت `dispatcher` من Undici (مثلاً HTTP/2 عبر `allowH2: true` أو `Agent` مخصص)، ثبّتها بنفسك — `npm install undici` — ثم مرّر **`dispatcher`** أو فعّل **`allowH2: true`**. التفاصيل: [الإعدادات](./configuration.md#node-undici-dispatcher).
+
 ## المثيل الافتراضي
 
 التصدير الافتراضي هو عميل أُنشئ بـ `createClient()` دون قيم افتراضية أولية:

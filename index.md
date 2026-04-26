@@ -114,16 +114,17 @@ openFetch targets teams that want those benefits **while staying on fetch** ever
 
 ## Documentation
 
-1. [Getting started](./getting-started.md) — install, default export, `createClient`, first requests  
-2. [HTTP methods](./http-methods.md) — GET, POST, PUT, PATCH, DELETE, `request()`, bodies and query params  
-3. [React & Vue](./framework-guides.md) — hooks, composables, shared clients, RSC notes  
-4. [Configuration](./configuration.md) — full request config, `rawResponse`, merge rules, helper exports  
-5. [Features & request pipeline](./features-pipeline.md) — full feature list, merge → dispatch diagrams, retry hooks  
-6. [Plugins & fluent API](./plugins-fluent.md) — `@hamdymohamedak/openfetch/plugins`, `@hamdymohamedak/openfetch/sugar`  
-7. [Interceptors & middleware](./interceptors-middleware.md) — execution order, `dispatch` internals, `use()`, custom middleware  
-8. [Retry & cache](./retry-cache.md) — retry budgets, idempotency, `createCacheMiddleware`, TTL / SWR  
-9. [Errors & security](./errors-security.md) — `OpenFetchError`, codes, guards, safe logging, `assertSafeHttpUrl`  
-10. [AI assistants & skills](./skills.md) — concise API guidance for models; `SKILL.md` skill bundle and [skills.sh](https://skills.sh) / [Agent Skills](https://agentskills.io/specification) format  
+1. [Visual guide (hands-on)](./visual-guide.md) — animated request flow + practical examples for every major feature  
+2. [Getting started](./getting-started.md) — install, default export, `createClient`, first requests  
+3. [HTTP methods](./http-methods.md) — GET, POST, PUT, PATCH, DELETE, `request()`, bodies and query params  
+4. [React & Vue](./framework-guides.md) — hooks, composables, shared clients, RSC notes  
+5. [Configuration](./configuration.md) — full request config, `rawResponse`, merge rules, helper exports  
+6. [Features & request pipeline](./features-pipeline.md) — full feature list, merge → dispatch diagrams, retry hooks  
+7. [Plugins & fluent API](./plugins-fluent.md) — `@hamdymohamedak/openfetch/plugins`, `@hamdymohamedak/openfetch/sugar`  
+8. [Interceptors & middleware](./interceptors-middleware.md) — execution order, `dispatch` internals, `use()`, custom middleware  
+9. [Retry & cache](./retry-cache.md) — retry budgets, idempotency, `createCacheMiddleware`, TTL / SWR  
+10. [Errors & security](./errors-security.md) — `OpenFetchError`, codes, guards, safe logging, `assertSafeHttpUrl`  
+11. [AI assistants & skills](./skills.md) — concise API guidance for models; `SKILL.md` skill bundle and [skills.sh](https://skills.sh) / [Agent Skills](https://agentskills.io/specification) format  
 
 ## Public API (summary)
 

@@ -31,6 +31,10 @@ The **`exports`** field in `package.json` lists these entrypoints so bundlers ca
 
 No mandatory polyfills on supported environments.
 
+### Optional: Node HTTP/2 and custom agents (`undici`)
+
+The library does **not** ship or declare [`undici`](https://www.npmjs.com/package/undici) as an npm dependency. If you need Undici’s `dispatcher` (for example HTTP/2 with `allowH2: true` or a custom `Agent`), install it yourself — `npm install undici` — then pass **`dispatcher`** or set **`allowH2: true`** on the request config. Details: [Configuration → Node.js `dispatcher` / `allowH2`](./configuration.md#node-undici-dispatcher).
+
 ## Default instance
 
 The default export is a client created with `createClient()` and no initial defaults:
@@ -107,6 +111,7 @@ Register **`retry` before `timeout`**. Full plugin reference: [Plugins & fluent 
 
 ## Next
 
+- [Visual guide (hands-on)](./visual-guide.md) — practical examples with short visual explanations for each major feature  
 - [HTTP methods](./http-methods.md) — detailed syntax for every verb  
 - [Plugins & fluent API](./plugins-fluent.md) — `retry`, `timeout`, `debug`, fluent chains  
 - [React & Vue](./framework-guides.md) — framework integration patterns  

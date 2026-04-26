@@ -19,6 +19,7 @@ Subclass of `Error` with optional:
 | `ERR_CANCELED` | Aborted (typically external `signal` or user abort) |
 | `ERR_TIMEOUT` | Per-request **`timeout`** elapsed (internal timer aborted `fetch` before user signal) |
 | `ERR_RETRY_TIMEOUT` | Total retry budget (`retry.timeoutTotalMs`) exceeded (monotonic clock) |
+| `ERR_UNDICI_REQUIRED` | `allowH2: true` was set but dynamic `import("undici")` failed — install [`undici`](https://www.npmjs.com/package/undici) yourself (not shipped with openFetch) |
 
 ## `isOpenFetchError`
 

@@ -87,7 +87,7 @@ Both libraries expose a familiar **instance + defaults + interceptors** DX. Inte
 | **XHR-specific behavior** | None (no `onuploadprogress` from XHR; upload progress follows **fetch** / runtime capabilities). | XHR adapter supports **upload/download progress** events on typical browser setups. |
 | **Redirects** | Uses **`fetch`’s `redirect`** option (`follow`, `manual`, `error`). `strictFetch()` plugin defaults to `error` when unset. | Follow behavior depends on adapter / environment (XHR vs Node); historically **follows redirects** by default in many setups. |
 | **Cancellation** | **`AbortController` / `signal`** end-to-end. | **`signal`** (modern) plus legacy **CancelToken** in older code. |
-| **Dependencies** | **Zero** runtime dependencies in the package design. | Axios ships as its **own package** with a larger surface area and Node/browser dual behavior. |
+| **Dependencies** | **Zero** runtime dependencies in the published package; optional **user-installed** [`undici`](https://www.npmjs.com/package/undici) only for Node `dispatcher` / `allowH2` (not bundled, not a peer dependency). | Axios ships as its **own package** with a larger surface area and Node/browser dual behavior. |
 | **Body parsing** | Centralized in **`dispatch.ts`** (`parseBody`, `responseType`, JSON heuristic from `Content-Type`). | Axios **transforms** + default JSON parsing in the adapter/pipeline. |
 | **Errors** | **`OpenFetchError`** with stable **`code`**, optional `toShape()` for logging. | **`AxiosError`** with `isAxiosError`, response/request/config attached. |
 

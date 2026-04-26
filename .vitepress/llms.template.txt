@@ -1,6 +1,6 @@
 # openFetch — LLM / agent context
 
-> **Package:** `@hamdymohamedak/openfetch` **__OPENFETCH_VERSION_TAG__** — fetch-only HTTP client (ESM). **Node 18+**. **Zero runtime dependencies.** No XHR on the transport path.
+> **Package:** `@hamdymohamedak/openfetch` **__OPENFETCH_VERSION_TAG__** — fetch-only HTTP client (ESM). **Node 18+**. **Zero runtime npm dependencies** in the published package (optional **user-installed** [`undici`](https://www.npmjs.com/package/undici) on Node only for `dispatcher` / `allowH2` — not bundled, not a peer dependency). No XHR on the transport path.
 
 ## Project
 
@@ -81,6 +81,8 @@ import { createFluentClient } from "@hamdymohamedak/openfetch/sugar";
 
 **Request:** `method`, `headers`, `data`, `body`, `signal`, `timeout` (internal abort → `ERR_TIMEOUT` if user signal not aborted), `auth` (Basic), `withCredentials`, `credentials` and other `RequestInit`: `cache`, `integrity`, `keepalive`, `mode`, `redirect`, `referrer`, `referrerPolicy`.
 
+**Node (Undici, user-controlled):** `dispatcher` — forward a user-created Undici agent/pool to `fetch` when supported. `allowH2: true` — shorthand that dynamically `import("undici")`, builds `Agent({ allowH2: true })`, passes as `dispatcher`; if `undici` is missing → `OpenFetchError` **`ERR_UNDICI_REQUIRED`**. `undici` is never a package dependency of openFetch — install only if you use these options.
+
 **Response handling:** `responseType` (`json`|`text`|`blob`|`arraybuffer`|`stream`); suggested `Accept` when `responseType` set and no `accept`; `rawResponse` (native `Response` as `data`, skip parse + `transformResponse`); `validateStatus(status)=>boolean` (default 2xx); `throwHttpErrors` (Ky-style when `validateStatus` omitted: `false` = never throw on status; function = throw when returns true for that status); `jsonSchema` (Standard Schema on parsed JSON after success); `transformRequest[]`, `transformResponse[]`.
 
 **Lifecycle:** `init[]` — sync `(config)=>void` on merged config after merge, before request interceptors.
@@ -102,6 +104,7 @@ import { createFluentClient } from "@hamdymohamedak/openfetch/sugar";
 ## dispatch (inner transport)
 
 - `buildURL` + optional `assertSafeHttpUrl`.
+- Resolve optional **`fetch` `dispatcher`**: from config `dispatcher`, or from `allowH2: true` via dynamic `import("undici")` (user must install `undici` for that path).
 - Lowercase headers; Basic `auth`; `transformRequest` chain; JSON body default for plain objects.
 - `mergeAbortSignals(userSignal, timeoutController)`.
 - Parse body by `responseType` or `Content-Type` heuristic; JSON parse failures may fall back to raw string in some paths; hard parse failure → `ERR_PARSE`.

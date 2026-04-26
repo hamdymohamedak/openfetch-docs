@@ -60,6 +60,17 @@
 تُمرَّر هذه الحقول إلى `fetch`:  
 `cache`، `credentials`، `integrity`، `keepalive`، `mode`، `redirect`، `referrer`، `referrerPolicy`.
 
+### Node.js: `dispatcher` و HTTP/2 (`allowH2`) {#node-undici-dispatcher}
+
+على Node (وأي بيئة يقبل فيها `fetch` خيار `dispatcher` بأسلوب Undici):
+
+- **`dispatcher`** — وكيل أو تجميعة خاص بك (مثلاً `new Agent({ allowH2: true })` من حزمة **[`undici`](https://www.npmjs.com/package/undici)** التي **تثبتها أنت**). يمرّرها openFetch إلى `fetch` إن دعمتها البيئة.
+- **`allowH2: true`** — اختصار: openFetch يحمّل `undici` ديناميكيًا ويبني `Agent` بـ `allowH2: true` ويمرّره كـ `dispatcher`.
+
+**`undici` ليست تبعية npm لـ `@hamdymohamedak/openfetch`.** الحزمة المنشورة بلا `dependencies` وبلا `peerDependencies` ولا تُضمّن `undici`. ثبّتها فقط عند الحاجة: `npm install undici`. إذا كان `allowH2: true` وفشل `import("undici")`، يُرمى **`OpenFetchError`** برمز **`ERR_UNDICI_REQUIRED`**.
+
+في المتصفحات والحواف حيث `fetch` يتجاهل `dispatcher`، لا تأثير لهذه الخيارات أو يتجاهلها المشغّل.
+
 ## `OpenFetchResponse`
 
 ```ts

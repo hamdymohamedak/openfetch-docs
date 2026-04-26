@@ -31,6 +31,7 @@ const LANGS: Lang[] = ["ar", "es", "fa", "fr", "hi", "it", "ja", "kr", "ku"];
 
 type NavLabels = {
   home: string;
+  visualGuide: string;
   gettingStarted: string;
   httpMethods: string;
   frameworks: string;
@@ -47,6 +48,7 @@ type NavLabels = {
 const LABELS: Record<Lang, NavLabels> = {
   ar: {
     home: "نظرة عامة",
+    visualGuide: "دليل مرئي عملي",
     gettingStarted: "البدء",
     httpMethods: "طرق HTTP",
     frameworks: "React و Vue",
@@ -61,6 +63,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   es: {
     home: "Resumen",
+    visualGuide: "Guia visual practica",
     gettingStarted: "Primeros pasos",
     httpMethods: "Métodos HTTP",
     frameworks: "React y Vue",
@@ -75,6 +78,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   fa: {
     home: "نمای کلی",
+    visualGuide: "راهنمای تصویری کاربردی",
     gettingStarted: "شروع سریع",
     httpMethods: "متدهای HTTP",
     frameworks: "React و Vue",
@@ -89,6 +93,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   fr: {
     home: "Aperçu",
+    visualGuide: "Guide visuel pratique",
     gettingStarted: "Démarrage",
     httpMethods: "Méthodes HTTP",
     frameworks: "React et Vue",
@@ -103,6 +108,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   hi: {
     home: "अवलोकन",
+    visualGuide: "विजुअल प्रैक्टिकल गाइड",
     gettingStarted: "शुरुआत",
     httpMethods: "HTTP विधियाँ",
     frameworks: "React और Vue",
@@ -117,6 +123,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   it: {
     home: "Panoramica",
+    visualGuide: "Guida visiva pratica",
     gettingStarted: "Introduzione",
     httpMethods: "Metodi HTTP",
     frameworks: "React e Vue",
@@ -131,6 +138,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   ja: {
     home: "概要",
+    visualGuide: "実践ビジュアルガイド",
     gettingStarted: "はじめに",
     httpMethods: "HTTP メソッド",
     frameworks: "React と Vue",
@@ -145,6 +153,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   kr: {
     home: "개요",
+    visualGuide: "실전 비주얼 가이드",
     gettingStarted: "시작하기",
     httpMethods: "HTTP 메서드",
     frameworks: "React와 Vue",
@@ -159,6 +168,7 @@ const LABELS: Record<Lang, NavLabels> = {
   },
   ku: {
     home: "Kurtebînî",
+    visualGuide: "Rehbera dîtbarî ya pratîkî",
     gettingStarted: "Destpêk",
     httpMethods: "Rêbazên HTTP",
     frameworks: "React û Vue",
@@ -175,6 +185,7 @@ const LABELS: Record<Lang, NavLabels> = {
 
 const ROOT_LABELS: NavLabels = {
   home: "Overview",
+  visualGuide: "Visual guide (hands-on)",
   gettingStarted: "Getting started",
   httpMethods: "HTTP methods",
   frameworks: "React & Vue",
@@ -208,6 +219,7 @@ function sidebarRoot() {
       items: [
         { text: "Languages", link: "/languages/" },
         { text: L.home, link: "/" },
+        { text: L.visualGuide, link: "/visual-guide" },
         { text: L.gettingStarted, link: "/getting-started" },
         { text: L.httpMethods, link: "/http-methods" },
         { text: L.frameworks, link: "/framework-guides" },
@@ -244,6 +256,7 @@ function sidebarFor(lang: Lang) {
     );
   }
   items.push(
+      { text: L.visualGuide, link: "/visual-guide" },
     { text: L.configuration, link: `${p}/configuration` },
     { text: L.debugging, link: "/debugging" },
     { text: L.pluginsFluent, link: pluginsFluentLink },

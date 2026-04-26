@@ -68,6 +68,17 @@ These `RequestInit` fields are typed on `OpenFetchConfig` and passed to `fetch`:
 
 `cache`, `credentials`, `integrity`, `keepalive`, `mode`, `redirect`, `referrer`, `referrerPolicy`.
 
+### Node.js: `dispatcher` and HTTP/2 (`allowH2`) {#node-undici-dispatcher}
+
+On Node (and any runtime whose `fetch` accepts a Undici-style `dispatcher` option), you can pass:
+
+- **`dispatcher`** — Your own agent or pool (for example `new Agent({ allowH2: true })` from the **[`undici`](https://www.npmjs.com/package/undici)** package you install). OpenFetch forwards it to `fetch` when the runtime supports it.
+- **`allowH2: true`** — Shorthand: OpenFetch dynamically loads `undici`, builds an `Agent` with `allowH2: true`, and passes it as `dispatcher`.
+
+**`undici` is not an npm dependency of `@hamdymohamedak/openfetch`.** The published package has no `dependencies`, no `peerDependencies`, and does not bundle `undici`. Install it only when you need this path: `npm install undici`. If `allowH2` is true and `import("undici")` fails, OpenFetch throws **`OpenFetchError`** with code **`ERR_UNDICI_REQUIRED`**.
+
+In browsers and on edges where `fetch` ignores `dispatcher`, these options have no effect or are ignored by the runtime.
+
 ## `OpenFetchResponse`
 
 ```ts
@@ -123,6 +134,7 @@ Plugins and fluent client live under **`@hamdymohamedak/openfetch/plugins`** and
 | Retries | `createRetryMiddleware` or `retry()` plugin |
 | GET caching | `createCacheMiddleware` + `MemoryCacheStore` |
 | Structured lifecycle logs | `debug` + optional `logger` on defaults (see [Debugging](./debugging.md)) |
+| Node HTTP/2 or custom agent | User-installed `undici` + `dispatcher` or `allowH2: true` ([dispatcher / `allowH2`](#node-undici-dispatcher)) |
 
 ## Next
 
